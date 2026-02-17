@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   Shield, 
   Code, 
@@ -21,18 +21,18 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-// Components
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import SkillsGrid from './components/SkillsGrid';
-import Involvement from './components/Involvement';
-import Footer from './components/Footer';
+// Components with explicit extensions for browser resolution
+import Header from './components/Header.tsx';
+import Hero from './components/Hero.tsx';
+import Education from './components/Education.tsx';
+import Experience from './components/Experience.tsx';
+import SkillsGrid from './components/SkillsGrid.tsx';
+import Involvement from './components/Involvement.tsx';
+import Footer from './components/Footer.tsx';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen selection:bg-blue-500/30">
+    <div className="min-h-screen selection:bg-blue-500/30 bg-[#0a0a0c]">
       {/* Background Decor */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full"></div>
