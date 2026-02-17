@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
-import { Mail, CheckCircle, MapPin, Linkedin, Github, Shield, Sparkles, Fingerprint } from 'lucide-react';
+import { Mail, CheckCircle, MapPin, Linkedin, Github, Shield, Sparkles, Fingerprint, User } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [copied, setCopied] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  
   const email = "Vcferrante11@gmail.com";
   const linkedinUrl = "https://www.linkedin.com/in/victoria-ferrante-329638324";
   const githubUrl = "https://github.com/VictoriaFerrante";
@@ -108,21 +110,22 @@ const Hero: React.FC = () => {
             <span>Status: Verified</span>
           </div>
 
-          {/* Main Photo Container - Perfect 2:3 Aspect Ratio (320x480) */}
+          {/* Main Photo Container */}
           <div className="relative w-72 h-[432px] md:w-[320px] md:h-[480px] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] bg-slate-900 ring-1 ring-white/5 transition-transform duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
-            <img 
-              src="Photo of me.jpg" 
-              alt="Victoria C. Ferrante Professional Portrait" 
-              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
-                const fallback = document.createElement('div');
-                fallback.innerHTML = '<div class="text-blue-500 font-bold text-lg">VCF</div>';
-                target.parentElement!.appendChild(fallback);
-              }}
-            />
+            {!imageError ? (
+              <img 
+                src="./photo-of-me.jpg" 
+                alt="Victoria C. Ferrante Professional Portrait" 
+                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900 text-blue-500/20">
+                <User size={120} strokeWidth={0.5} />
+                <span className="text-blue-500 font-bold text-xl tracking-tighter mt-4 opacity-50">VCF.SYSTEMS</span>
+              </div>
+            )}
+            
             {/* Elegant Vignette Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c]/80 via-transparent to-transparent opacity-60"></div>
             
@@ -141,7 +144,7 @@ const Hero: React.FC = () => {
               </div>
               <div>
                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-0.5">Professional</p>
-                <p className="text-base font-bold text-white tracking-tight">Cybersecurity Work Focused</p>
+                <p className="text-base font-bold text-white tracking-tight">Cybersecurity Focused</p>
               </div>
             </div>
           </div>
